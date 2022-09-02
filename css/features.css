@@ -1,0 +1,32 @@
+.features__text{
+    text-align: center;
+    margin-top: 150px;
+    margin-bottom: 100px;
+    margin-left: 15%;
+    margin-right: 15%;
+    justify-content: center;
+}
+
+.features__title{
+
+    line-height: 130%;
+    text-align: center;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 130%;
+    color: #212353;
+
+}
+
+.features__paragraph{
+
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 160%;
+
+    /*text-align: center;*/
+
+    color: #4B5D68;
+
+}
+

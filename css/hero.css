@@ -1,0 +1,43 @@
+.hero{
+    background-image: url(../images/hero.svg); 
+    background-repeat: no-repeat;  
+    background-position: right center;
+    /*background: url(../images/hero.svg) no-repeat right top;*/
+    background-size: 885px 468px;
+}
+.hero__inner{
+    width: 645px;
+    padding-top: 80px;
+    padding-bottom: 380px;
+}
+
+.hero__title{
+    font-weight: 700;
+    font-size: 80px;
+    line-height: 110%;
+    color: #212353;
+}
+
+.hero__paragraph{
+    width: 380px;
+    height: 120px;
+    left: 240px;
+    top: 474px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 160%;
+    color: #4B5D68;
+}
+
+
+.hero__button{
+    width: 170px;
+height: 60px;
+left: 240px;
+top: 644px;
+
+/* 3 */
+
+background: #9C69E2;
+border-radius: 50px;
+}

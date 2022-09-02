@@ -1,0 +1,45 @@
+.second{
+
+
+    background: rgba(240, 99, 184, 0.15);
+    border-radius: 50px;
+    margin-left: 15%;
+    margin-right: 10%;
+    height: 560px;
+    background-image: url(../images/image2.svg);
+    background-repeat: no-repeat;  
+    background-position: left center;
+    display: flex;
+}
+
+.second__text{
+    padding-top: 125px;
+    padding-bottom: 125px;
+    padding-left: 500px;
+ 
+}
+
+
+
+.second__title{
+    padding-left: 3px;
+    width: 475px;
+    height: 100px;
+    
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 130%;
+    color: #212353;
+}
+
+
+.second__paragraph{
+    width: 474px;
+    margin-right: 21%;
+    height: 170px;
+    padding-bottom: 125px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 160%;
+    color: #4B5D68;
+}
