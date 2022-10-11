@@ -1,11 +1,10 @@
 .second{
-
-
     background: rgba(240, 99, 184, 0.15);
-    border-radius: 50px;
-    margin-left: 15%;
-    margin-right: 10%;
-    height: 560px;
+    border-radius: 3.125rem;
+    width: 80%;
+    margin-left: 10%;
+    /*margin-right: 10%;*/
+    height: 35rem;
     background-image: url(../images/image2.svg);
     background-repeat: no-repeat;  
     background-position: left center;
@@ -13,9 +12,9 @@
 }
 
 .second__text{
-    padding-top: 125px;
-    padding-bottom: 125px;
-    padding-left: 500px;
+    padding-top: 7.81rem;
+    padding-bottom: 7.81rem;
+    padding-left: 31.25rem;
  
 }
 
@@ -23,23 +22,61 @@
 
 .second__title{
     padding-left: 3px;
-    width: 475px;
-    height: 100px;
+    width: 90%;
+    height: 6.25rem;
     
     font-weight: 700;
-    font-size: 40px;
+    font-size: 2.5rem;
     line-height: 130%;
     color: #212353;
 }
 
 
 .second__paragraph{
-    width: 474px;
+    width: 29.625rem;
     margin-right: 21%;
-    height: 170px;
-    padding-bottom: 125px;
+    height: 10.625rem;
+    padding-bottom: 7.81rem;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 1.125rem;
     line-height: 160%;
     color: #4B5D68;
+}
+
+@media screen and (max-width: 768px) {
+    .second {
+        text-align: center;
+        flex-direction: column;
+        padding-bottom: 5rem;
+        margin-left: 5rem;
+        margin-bottom: 25rem;
+        animation: floating 3s linear infinite;
+
+    }
+    .second__text{
+        width: 30rem;
+        padding-right: auto;
+        padding-left: 0;
+        padding-top: 5rem;
+        
+    }
+
+
+    .second__paragraph{
+        width: 30rem;
+        margin-right: auto;
+        margin-left: auto;
+        animation: none;
+    }
+
+
+
+    .second{
+        width: 32rem;
+        height: 25rem;
+        margin-right: auto;
+        margin-left: auto;
+        background-image: none;
+
+    }
 }

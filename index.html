@@ -6,20 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Here is my first lab</title>
     <link rel="stylesheet" href="css/styles.css">
+  
 </head>
 
 <body>
     <section class = "hero">
         <div class="container">
             <header class = "header">
+              <div class="header__menu" onclick=" toggleMenu() ">
+                <img src="images/menu-icon.svg" alt="Menu icon">
+              </div>
                 <div class="logo"><img src="images/Logo.svg" alt="logo-header"></div>
-                <nav class="header__nav">
+                <nav id="nav-links" class="header__nav">
 
                     <ul>
-                        <li class = "header__nav-item-selected"><a href="">About</a></li>
-                        <li class = "header__nav-item"><a href="">Help</a></li>
-                        <li class = "header__nav-item"><a href="">Features</a></li>
-                        <li class = "header__nav-item"><a href="">Signup</a></li>
+                        <li class = "header__nav-item-selected"><a class="heaader__nav-link" href="">About</a></li>
+                        <li class = "header__nav-item"><a class="heaader__nav-link" href="">Help</a></li>
+                        <li class = "header__nav-item"><a class="heaader__nav-link" href="">Features</a></li>
+                        <li class = "header__nav-item"><a class="heaader__nav-link" href="">Signup</a></li>
                     </ul>
                 </nav>
                 <button class="header__Request-Demo">Request Demo
@@ -29,6 +33,7 @@
                   class="pointer-img"
                   />
                 </button>
+               
 
             </header>
         </div>
@@ -44,8 +49,10 @@
                 <div class = "hero__buttons">
                     <button class="hero__button">Learn more</button>
                 </div>
+              
             </div>
         </div>
+        
     </section>
     <section class = "second">
         <div class="container">
@@ -203,9 +210,11 @@
             © Datawarehouse™, 2020. All rights reserved.<br>Company Registration
             Number: 21479524.
           </p>
-          <img src="./images/message-icon.svg" />
+          <div class="message-icon">
+            <img src="./images/message-icon.svg" />
+          </div>
         </div>
     </footer>
-    
+    <script src="js/main.js"></script>
 </body>
 </html>

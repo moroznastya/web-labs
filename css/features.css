@@ -1,10 +1,21 @@
 .features__text{
     text-align: center;
-    margin-top: 150px;
-    margin-bottom: 100px;
+    margin-top: 9.375rem;
+    margin-bottom: 6.25rem;
     margin-left: 15%;
     margin-right: 15%;
     justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+    .features__text{
+        flex-direction: column;
+        margin-bottom: 8rem;
+        margin-top: -20rem;
+        margin-left: auto;
+        margin-right: auto;
+        width: 35rem;
+    }
 }
 
 .features__title{
@@ -12,8 +23,7 @@
     line-height: 130%;
     text-align: center;
     font-weight: 700;
-    font-size: 40px;
-    line-height: 130%;
+    font-size: 2.5rem;
     color: #212353;
 
 }
@@ -21,7 +31,7 @@
 .features__paragraph{
 
     font-weight: 500;
-    font-size: 18px;
+    font-size: 1.125rem;
     line-height: 160%;
 
     /*text-align: center;*/
