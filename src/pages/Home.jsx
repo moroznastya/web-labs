@@ -2,6 +2,10 @@ import { Link } from 'react-router-dom';
 import Card from '../components/Card';
 import { useState } from 'react';
 
+import {useNavigate} from 'react-router-dom'
+import { useSelector } from 'react-redux';
+
+
 function Home({
     items,
     searchValue,
@@ -10,15 +14,17 @@ function Home({
     onAddToFavorite,
     onAddToCart,
     onViewItem,
-    onSelectSneakers
-}) {
+    onSelectSneakers,
+    isLoading
+})
+ {
   const [sortBy, setSortBy] = useState('Sort by');
   const [sortOrder, setSortOrder] = useState('Sorting order');
   const [sortProps, setSortProps] = useState({ sortBy: '', sortingOrder: '' })
 
   let sortedItems = [];
   let foundItems = items.filter(item => item.title.search(searchValue) !== -1);
-  console.log(sortBy, sortOrder);
+ 
   if (sortBy === 'Price') {
       if (sortOrder === 'Ascending') {
           sortedItems = foundItems.sort(function (a, b) {
@@ -32,8 +38,41 @@ function Home({
       }
   } else {
       sortedItems = foundItems;
-  }
+  
+    }
 
+
+
+
+    const renderItems = () => {
+      const filtredItems = sortedItems.filter((item) =>
+        item.title.toLowerCase().includes(searchValue.toLowerCase()),
+      );
+      return (isLoading ? [...Array(8)] : filtredItems).map((item, index) => (
+        <Card
+        key = {index}
+        isLoading={isLoading}
+        onFavorite={(obj)=> onAddToFavorite(obj)}
+        onPlus={(obj) => onAddToCart(obj)}  
+        onSelect={(obj, id) => onSelectSneakers(obj, id)}
+        onViewMore={(obj) =>  onViewItem(obj)}
+        {...item}
+          
+        />
+      ));
+    };
+
+
+    const navigate = useNavigate()
+    const cart = useSelector((state) => state.cart)
+  
+    const  getTotalQuantity = () => {
+      let total = 0
+      cart.forEach(item => {
+        total += item.quantity
+      })
+      return total
+    }
   
     return (
         <div className="content p-40">
@@ -56,6 +95,10 @@ function Home({
             <div className="ml-90 d">
               <button >Apply</button>
             </div>
+      <div className='shopping-cart' onClick={() => navigate('/cart')}>
+           <img width={18} height={18} src="/img/cart.svg" />
+            <p>{getTotalQuantity() || 0}</p>
+           </div>
             
             </div>
         <div className="d-flex align-center mb-40 justify-between">
@@ -69,25 +112,7 @@ function Home({
             <input onChange={onChangeSearchInput} value={searchValue} placeholder="Пошук..." />
           </div>
         </div>
-        <div className ="d-flex flex-wrap">
-
-          
-        {sortedItems.filter((item)=> item.title.toLowerCase().includes(searchValue.toLowerCase())).map((item)=> (
-                    <Card 
-                    key = {item.title}
-                    title={item.title}
-                    price={item.price}
-                    id={item.id}
-                    imageUrl={item.imageUrl} 
-                    onFavorite={(obj)=> onAddToFavorite(obj)}
-                    onPlus={(obj) => onAddToCart(obj)}  
-                    onSelect={(obj, id) => onSelectSneakers(obj, id)}
-                    onViewMore={(obj) =>  onViewItem(obj)}      
-                   />
-        ))}
-
- 
-        </div>
+        <div className ="d-flex flex-wrap">{renderItems()}</div>
         <div className="btn-create">
           <Link to="/addsneakers">
             <button  className="greenButtonFooter">Додати кросівки</button>
@@ -95,8 +120,11 @@ function Home({
           
         </div>
 
+
       </div>
     );
 }
 
 export default Home;
+
+

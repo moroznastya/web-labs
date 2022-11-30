@@ -38,5 +38,18 @@
       margin-top: 20px;
       display: block;
     }
+
+    .removeBtn{
+      opacity: 0.5;
+      position: absolute;
+      margin-right: 5px;
+      justify-content: right;
+      cursor: pointer;
+      transition: opacity 0.15s ease-in-out;
+  
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
   

@@ -10,6 +10,8 @@ import Footer from './components/Footer';
 import Create from './pages/Create';
 import Item from './pages/Item';
 import Edit from './pages/Edit';
+import Card from './pages/Card';
+
 
 
 
@@ -20,34 +22,35 @@ function App() {
   const [favorites, setFavorites] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState('');
   const [sneakers, setSneakers] = React.useState({id: '', title: '', price: '', imageUrl: ''});
-
-
-
   const [item, setItem] = React.useState({id: '', title: '', price: '', imageUrl: ''});
-
-
   const [cartOpened, setCartOpened] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
 
 
-  React.useEffect(()=> {
-    axios.get('https://6347feb30484786c6e8ee836.mockapi.io/items').then(
-      (res) => {
-        setItems(res.data);
-      }
-    )
-    axios.get('https://6347feb30484786c6e8ee836.mockapi.io/cart').then(
-      (res) => {
-        setCartItems(res.data);
-      }
-    )
 
-    axios.get('https://6347feb30484786c6e8ee836.mockapi.io/Favorite').then(
-      (res) => {
-        setFavorites(res.data);
+
+  React.useEffect(() => {
+    async function fetchData() {
+      
+      try {
+        const [cartResponse, favoritesResponse, itemsResponse] = await Promise.all([
+          axios.get('https://6347feb30484786c6e8ee836.mockapi.io/cart'),
+          axios.get('https://6347feb30484786c6e8ee836.mockapi.io/Favorite'),
+          axios.get('https://6347feb30484786c6e8ee836.mockapi.io/items'),
+        ]);
+
+        setIsLoading(false);
+        setCartItems(cartResponse.data);
+        setFavorites(favoritesResponse.data);
+        setItems(itemsResponse.data);
+      } catch (error) {
+        alert('Помилка при запиті даних ;(');
+        console.error(error);
       }
-    ) 
+    }
+
+
     
-
     /*fetch('https://6347feb30484786c6e8ee836.mockapi.io/items')
     .then((res)=>{
     return res.json();
@@ -56,7 +59,10 @@ function App() {
     setItems(json);
     });*/
 
-    
+
+
+
+    fetchData();
   }, []);
 
 
@@ -67,9 +73,9 @@ function App() {
 
   const onSelectSneakers = (obj) => {
 
-      setSneakers(obj);  
-      console.log(sneakers);
-      console.log(sneakers.id)
+    setSneakers(obj);  
+    console.log(sneakers);
+    console.log(sneakers.id)
 
   }
 
@@ -107,13 +113,6 @@ function App() {
 
 
 
-
-
-
-
-
-
-
   return (
     <div className="wrapper clear">
       {cartOpened && <Drawer items={cartItems} onClose={()=> setCartOpened(false)} onRemove={onRemoveItem}/>}
@@ -123,7 +122,7 @@ function App() {
 
           <Routes>
           <Route path="" exact element = {<HomePage
-                        items={[{"id":"1","title":"Чоловічі кросівки Nike Blazer Mid Suede Green","price":"2000","imageUrl":"/img/sneakers/5.jpg"},{"id":"2","title":"Чоловічі кросівки Nike Air Max 270","price":3500,"imageUrl":"/img/sneakers/2.jpg"},{"id":"3","title":"Чоловічі кросівки Nike Blazer Mid Suede","price":1999,"imageUrl":"/img/sneakers/3.jpg"},{"id":"4","title":"Кросівки Puma X Aka Boku Future Rider","price":2499,"imageUrl":"/img/sneakers/4.jpg"}]}
+                        items={[{"id":1,"title":"Чоловічі кросівки Nike Blazer Mid Suede","price":12999,"imageUrl":"img/sneakers/1.jpg"},{"id":2,"title":"Чоловічі кросівки Nike Air Max 270","price":15600,"imageUrl":"img/sneakers/2.jpg"},{"id":3,"title":"Чоловічі кросівки Nike Blazer Mid Suede","price":8499,"imageUrl":"img/sneakers/3.jpg"},{"id":4,"title":"Кросівки Puma X Aka Boku Future Rider","price":8999,"imageUrl":"img/sneakers/4.jpg"}]}
                         cartItems={cartItems}
                         searchValue={searchValue}
                         setSearchValue={setSearchValue}
@@ -142,6 +141,7 @@ function App() {
               onChangeSearchInput={onChangeSearchInput}
               onAddToFavorite={onAddToFavorite}
               onAddToCart={onAddToCart}
+              isLoading={isLoading}
               onViewItem={onViewItem}
               onSelectSneakers={onSelectSneakers}
             />} />
@@ -170,6 +170,7 @@ function App() {
                 onUpdateToSneakers={onUpdateToSneakers}
              
             />}/>
+                    <Route path='/cart' element={<Card />}/>
           </Routes>
 
           <Footer/>
